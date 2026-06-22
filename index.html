@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CatPics - Official Site</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+<section>
+    <input id="link" type="url"><br>
+    <input id="desc"type="text"><br>
+    <input id="category"type="text"><br>
+    <select id="catype">
+        <option value="white">A White Cat</option>
+        <option value="black">A Black Cat</option>
+        <option value="ginger">A Ginger</option>
+        <option value="spotted">A Mixed Color Cat</option>
+    </select>
+    <button onclick="addpic()">ADD</button>
+    <p id="addmsg"></p>
+</section>
+<hr>
+<section style="display: flex; margin-top: 40px">
+    <div><input type="number" style="font-size: 30px" id="single_id">
+    <button onclick="get_single_cat()" style="font-size:30px ">Get CAT !</button>
+    </div>
+
+    <table style="display: none; border: 7px solid #ffffff" id="tab">
+        <tr>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Cat Type</th>
+            <th>Category</th>
+        </tr>
+        <tr>
+            <td id="single_image"></td>
+            <td id="single_descr"></td>
+            <td id="single_type"></td>
+            <td id="single_category"></td>
+        </tr>
+
+    </table>
+</section>
+</body>
+</html>
