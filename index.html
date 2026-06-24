@@ -28,7 +28,7 @@
     <button onclick="get_single_cat()" style="font-size:30px ">Get CAT !</button>
     </div>
 
-    <table style="display: none; border: 7px solid #ffffff" id="tab">
+    <table style="display: none; border: 7px solid coral" id="tab">
         <tr>
             <th>Image</th>
             <th>Description</th>
@@ -43,6 +43,34 @@
         </tr>
 
     </table>
+    <span id="yas"></span>
+</section>
+<hr>
+<section style="margin-top: 20px; font-size: 30px ">
+    <input type="number" id="delete_id" style="font-size: 30px">
+    <button onclick="delete_cat()"style="font-size: 30px">DELETE</button>
+    <p id="dltmsg"></p>
+</section>
+<section>
+    <span>ENTER ID</span><input type="number" id="up_id">
+    <p>UPDATED DETAILS</p>
+    <input id="up_link" type="url"><br>
+    <input id="up_desc"type="text"><br>
+    <input id="up_category"type="text"><br>
+    <select id="up_catype">
+        <option value="white">A White Cat</option>
+        <option value="black">A Black Cat</option>
+        <option value="ginger">A Ginger</option>
+        <option value="spotted">A Mixed Color Cat</option>
+    </select>
+    <button onclick="update_pic()">UPDATE</button>
+    <p id="upmsg"></p>
+</section>
+<hr>
+<section>
+    <button onclick="load_all()">LOAD ALL</button>
+    <div id="products"></div>
+
 </section>
 </body>
 </html>

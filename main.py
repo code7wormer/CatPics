@@ -1,4 +1,4 @@
-from fastapi import FastAPI,Depends
+from fastapi import FastAPI,Depends,HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 import db_models
@@ -39,5 +39,41 @@ def view_single_cat(id:int,db:Session=Depends(get_db)):
     if tup:
         return tup
     else:
-        return "PRODUCT NOT FOUND"
+        raise HTTPException(
+            status_code=404,
+            detail="Product not found"
+        )
 
+@app.delete("/product/{id}")
+def delete_cat(id:int , db:Session=Depends(get_db)):
+    tup=db.query(db_models.Cat).filter(db_models.Cat.id==id).first()
+    if tup:
+        db.delete(tup)
+        db.commit()
+        return {"message":"Product Deleted Successfully"}
+    else:
+        raise HTTPException(
+            status_code=404,
+            detail="Product Not found"
+        )
+
+
+@app.put("/product/{id}")
+def update_cat(id:int,cat:CreatePic, db:Session=Depends(get_db)):
+    tup=db.query(db_models.Cat).filter(db_models.Cat.id==id).first()
+    if tup:
+        tup.url=cat.url
+        tup.desc=cat.desc
+        tup.category=cat.category
+        tup.type=cat.type
+        tup.updated_at=datetime.now(UTC)
+        db.commit()
+        db.refresh(tup)
+        return tup
+    raise HTTPException(
+        status_code=404,
+        detail="Product not found"
+    )
+@app.get("/products")
+def load(db:Session=Depends(get_db)):
+    return db.query(db_models.Cat).all()
